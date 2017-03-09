@@ -3,7 +3,7 @@
  *This is an example of an array implementation of a Stack. So an element can only be added/removed from the end of the array.
  *In theory stacks have no fixed size, but with an array implementation it does.
 */
-class Stack{
+class Stack_Array{
 	private int maxSize;
 	private int[] stackArray;
 	private int top;
@@ -38,20 +38,84 @@ class Stack{
 		top = -1;			 //push method after calling makeEmpty it will overwrite previous values
 	}
 }
+
+
+/* This is ArrayList Implementation of stack , Where size is not a problem we can extend the stack as much as we want*/ 
+class Stack_List{
+		
+		
+		ArrayList<Integer> stackList;
+		
+		Stack(){ //constructor
+			stackList=new ArrayList<>();
+		}
+		
+		
+		void push(int value){ //adds value to the end of list which is the top for stack
+			stackList.add(value);
+		}
+		
+		int pop(){ //pops last element of list which is indeed the top for Stack 
+			
+			if(!isEmpty()){ // checks for an empty Stack
+				
+				int popValue=stackList.get(stackList.size()-1);
+				stackList.remove(stackList.size()-1);  //removes the poped element from the list
+				return popValue;
+			}
+			else{
+				System.out.print("The stack is already empty  ");
+				return -1;
+			}
+			
+		}
+		
+		boolean isEmpty(){ //checks for empty Stack
+			if(stackList.isEmpty())
+				return true;
+			
+			else return false;
+			
+		}
+		
+		int peek(){ //top element of stack
+			return stackList.get(stackList.size()-1);
+		}
+	}
+
+
 //Example
 public class Stacks{
 	public static void main(String args[]){
-		Stack myStack = new Stack(4); //Declare a stack of maximum size 4
+		Stack myStack = new Stack_Array(4); //Declare a stack of maximum size 4
 		//Populate the stack
 		myStack.push(5);
 		myStack.push(8);
 		myStack.push(2);
 		myStack.push(9);
 
+		System.out.println("************Array Implementation************");
 		System.out.println(myStack.isEmpty()); //will print false
 		System.out.println(myStack.isFull()); //will print true
 		System.out.println(myStack.peek()); //will print 9
 		System.out.println(myStack.pop()); //will print 9
 		System.out.println(myStack.peek()); // will print 2
+		
+		
+		Stack myStack2 = new Stack_List(); 
+		//Populate the stack
+		myStack.push(5);
+		myStack.push(8);
+		myStack.push(2);
+		myStack.push(9);
+
+		System.out.println("************List Implementation************");
+		System.out.println(myStack.isEmpty()); //will print false
+		System.out.println(myStack.isFull()); //will print true
+		System.out.println(myStack.peek()); //will print 9
+		System.out.println(myStack.pop()); //will print 9
+		System.out.println(myStack.peek()); // will print 2
+		
+		
 	}
 }
